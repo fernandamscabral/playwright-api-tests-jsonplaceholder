@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test('GET /posts should return a list of posts', async ({ request }) => {
+test('GET /posts - returns a list of posts', async ({ request }) => {
   const response = await request.get(
     'https://jsonplaceholder.typicode.com/posts'
   );
@@ -18,7 +18,7 @@ test('GET /posts should return a list of posts', async ({ request }) => {
   expect(body[0]).toHaveProperty('body');
 });
 
-test('GET /posts/1 should return a single post', async ({ request }) => {
+test('GET /posts/:id - existing id returns a post', async ({ request }) => {
   const response = await request.get(
     'https://jsonplaceholder.typicode.com/posts/1'
   );
@@ -33,7 +33,7 @@ test('GET /posts/1 should return a single post', async ({ request }) => {
   expect(body).toHaveProperty('body');
 });
 
-test('GET /posts/9999 should return empty response', async ({ request }) => {
+test('GET /posts/:id - non existing id returns 404', async ({ request }) => {
   const response = await request.get(
     'https://jsonplaceholder.typicode.com/posts/9999'
   );
