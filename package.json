@@ -1,0 +1,23 @@
+{
+  "name": "playwright-api-tests-jsonplaceholder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fernandamscabral/playwright-api-tests-jsonplaceholder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/fernandamscabral/playwright-api-tests-jsonplaceholder/issues"
+  },
+  "homepage": "https://github.com/fernandamscabral/playwright-api-tests-jsonplaceholder#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^25.0.10"
+  }
+}
