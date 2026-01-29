@@ -19,9 +19,7 @@ test('GET /posts - returns a list of posts', async ({ request }) => {
 });
 
 test('GET /posts/:id - existing id returns a post', async ({ request }) => {
-  const response = await request.get(
-    'https://jsonplaceholder.typicode.com/posts/1'
-  );
+  const response = await request.get('/posts/1');
 
   expect(response.status()).toBe(200);
 
@@ -34,9 +32,7 @@ test('GET /posts/:id - existing id returns a post', async ({ request }) => {
 });
 
 test('GET /posts/:id - non existing id returns 404', async ({ request }) => {
-  const response = await request.get(
-    'https://jsonplaceholder.typicode.com/posts/9999'
-  );
+  const response = await request.get('/posts/9999');
 
   expect(response.status()).toBe(404);
 
