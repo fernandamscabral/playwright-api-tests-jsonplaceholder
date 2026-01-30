@@ -1,5 +1,7 @@
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
 
-test('sanity check', async () => {
-  expect(true).toBe(true);
+test('GET /posts - api is reachable (sanity)', async ({ request }) => {
+  const response = await request.get('/posts');
+  
+  expect(response.status()).toBe(200);
 });
