@@ -32,3 +32,14 @@ test('GET /comments - returns comments with expected structure', async ({ reques
   expect(comment).toHaveProperty('email');
   expect(comment).toHaveProperty('body');
 });
+
+test ('GET /comments with invalid postId returns empty array', async ({ request }) => {
+   const response = await request.get('/comments?postId=abc');
+
+   expect(response.status()).toBe(200);
+
+   const body = await response.json();
+   expect(Array.isArray(body)).toBe(true);
+   expect(body.length).toBe(0);
+});
+
