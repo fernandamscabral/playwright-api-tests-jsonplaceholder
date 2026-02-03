@@ -45,3 +45,9 @@ test('GET /posts/:id - returns 404 for non-existing id', async ({ request }) => 
 
   expect(response.status()).toBe(404);
 });
+
+test('GET /posts/:id - returns client error for non-numeric id', async ({ request }) => {
+  const response = await request.get('/posts/abc');
+
+  expect([400, 404]).toContain(response.status());
+});
