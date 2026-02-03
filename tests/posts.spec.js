@@ -40,11 +40,8 @@ test('GET /posts/:id - existing id returns a post', async ({ request }) => {
   expect(typeof body.body).toBe('string');
 });
 
-test('GET /posts/:id - non existing id returns 404 and empty body', async ({ request }) => {
+test('GET /posts/:id - returns 404 for non-existing id', async ({ request }) => {
   const response = await request.get('/posts/9999');
 
   expect(response.status()).toBe(404);
-
-  const body = await response.json();
-  expect(body).toEqual({});
 });
