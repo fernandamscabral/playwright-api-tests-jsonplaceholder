@@ -14,6 +14,11 @@ test('GET /posts - returns a list of posts', async ({ request }) => {
   expect(body[0]).toHaveProperty('id');
   expect(body[0]).toHaveProperty('title');
   expect(body[0]).toHaveProperty('body');
+
+  expect(typeof body[0].userId).toBe('number');
+  expect(typeof body[0].id).toBe('number');
+  expect(typeof body[0].title).toBe('string');
+  expect(typeof body[0].body).toBe('string');
 });
 
 test('GET /posts/:id - existing id returns a post', async ({ request }) => {
@@ -23,13 +28,19 @@ test('GET /posts/:id - existing id returns a post', async ({ request }) => {
 
   const body = await response.json();
 
+  expect(Array.isArray(body)).toBe(false);
+
   expect(body.id).toBe(1);
   expect(body).toHaveProperty('userId');
   expect(body).toHaveProperty('title');
   expect(body).toHaveProperty('body');
+
+  expect(typeof body.userId).toBe('number');
+  expect(typeof body.title).toBe('string');
+  expect(typeof body.body).toBe('string');
 });
 
-test('GET /posts/:id - non existing id returns 404', async ({ request }) => {
+test('GET /posts/:id - non existing id returns 404 and empty body', async ({ request }) => {
   const response = await request.get('/posts/9999');
 
   expect(response.status()).toBe(404);
