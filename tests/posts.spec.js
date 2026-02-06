@@ -51,3 +51,20 @@ test('GET /posts/:id - returns client error for non-numeric id', async ({ reques
 
   expect([400, 404]).toContain(response.status());
 });
+
+test('GET /posts?userId=1 - returns posts filtered by userId', async ({ request }) => {
+    const response = await request.get('/posts', {
+      params: { userId: 1 },
+    });
+
+  expect(response.status()).toBe(200);  
+
+  const body = await response.json();
+
+  expect(Array.isArray(body)).toBe(true);
+  expect(body.length).toBeGreaterThan(0);
+
+  for (const post of body) {
+    expect(post.userId).toBe(1);
+  } 
+});
