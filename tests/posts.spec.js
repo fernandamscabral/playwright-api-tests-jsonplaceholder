@@ -68,3 +68,26 @@ test('GET /posts?userId=1 - returns posts filtered by userId', async ({ request 
     expect(post.userId).toBe(1);
   } 
 });
+
+test('POST /posts - create post (simulated)', async ({ request }) => {
+  const payload = {
+    userId: 1,
+    title: 'Test Post',
+    body: 'This is a test post.',
+  };
+
+  const response = await request.post('/posts', {
+    data: payload,
+  });
+
+  expect(response.status()).toBe(201);
+
+  const body = await response.json();
+
+  expect(body).toHaveProperty('id');
+  expect(typeof body.id).toBe('number');
+
+  expect(body.userId).toBe(payload.userId);
+  expect(body.title).toBe(payload.title);
+  expect(body.body).toBe(payload.body);
+});
