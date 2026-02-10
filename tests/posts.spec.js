@@ -91,3 +91,19 @@ test('POST /posts - create post (simulated)', async ({ request }) => {
   expect(body.title).toBe(payload.title);
   expect(body.body).toBe(payload.body);
 });
+
+test('PATCH /posts/:id - update post (simulated)', async ({ request }) => {
+  const payload = {
+    title: 'Updated title',
+  };
+
+  const response = await request.patch('/posts/1', {
+    data: payload,
+  });
+
+  expect(response.status()).toBe(200);
+
+  const body = await response.json();
+
+  expect(body.title).toBe(payload.title);
+});
