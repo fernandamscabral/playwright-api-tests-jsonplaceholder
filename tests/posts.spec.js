@@ -107,3 +107,25 @@ test('PATCH /posts/:id - update post (simulated)', async ({ request }) => {
 
   expect(body.title).toBe(payload.title);
 });
+
+test('PUT /posts/:id - update post (simulated)', async ({ request }) => {
+  const payload = {
+    id: 1,
+    userId: 1,
+    title: 'Updated post title',
+    body: 'Updated post body',
+  };
+
+  const response = await request.put('/posts/1', {
+    data: payload,
+  });
+
+  expect(response.status()).toBe(200);
+
+  const body = await response.json();
+
+  expect(body.id).toBe(payload.id);
+  expect(body.userId).toBe(payload.userId);
+  expect(body.title).toBe(payload.title);
+  expect(body.body).toBe(payload.body);
+});
