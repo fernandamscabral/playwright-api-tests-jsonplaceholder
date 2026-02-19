@@ -13,7 +13,13 @@ test('GET /users - returns a list of users', async ({ request }) => {
 
 test('GET /users - returns users with expected structure', async ({ request }) => {
   const response = await request.get('/users');
+
+  expect(response.status()).toBe(200);
+  
   const body = await response.json();
+  
+  expect(Array.isArray(body)).toBe(true);
+  expect(body.length).toBeGreaterThan(0);
 
   const user = body[0];
 
