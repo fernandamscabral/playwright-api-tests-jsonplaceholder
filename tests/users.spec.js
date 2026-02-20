@@ -17,7 +17,7 @@ test('GET /users - returns users with expected structure', async ({ request }) =
   expect(response.status()).toBe(200);
   
   const body = await response.json();
-  
+
   expect(Array.isArray(body)).toBe(true);
   expect(body.length).toBeGreaterThan(0);
 
@@ -39,4 +39,21 @@ test('GET /users - returns users with expected structure', async ({ request }) =
 
   expect(user).toHaveProperty('company');
   expect(user.company).toHaveProperty('name');
+
+  expect(typeof user.id).toBe('number');
+  expect(typeof user.name).toBe('string');
+  expect(typeof user.username).toBe('string');
+  expect(typeof user.email).toBe('string');
+
+  expect(typeof user.address).toBe('object');
+  expect(typeof user.address.street).toBe('string');
+  expect(typeof user.address.city).toBe('string');
+  expect(typeof user.address.zipcode).toBe('string');
+
+  expect(typeof user.address.geo).toBe('object');
+  expect(typeof user.address.geo.lat).toBe('string');
+  expect(typeof user.address.geo.lng).toBe('string');
+
+  expect(typeof user.company).toBe('object');
+  expect(typeof user.company.name).toBe('string');
 });
